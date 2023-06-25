@@ -1,0 +1,26 @@
+{:deps {io.github.rads/rain {:git/tag "v0.1.1" :git/sha "d3b0a39"
+                             :deps/root "tasks"}
+        com.biffweb/tasks {:git/url "https://github.com/jacobobryant/biff"
+                           :git/tag "v0.7.6" :git/sha "d0a3248"
+                           :deps/root "tasks"}}
+ :tasks {dev (exec 'rain.tasks/dev)
+         lint (exec 'rain.tasks/lint)
+         npm-ci (shell "npm ci")
+         postcss (exec 'rain.tasks/postcss)
+         shadow-cljs (clojure "-M:shadow-cljs release prod")
+         assets {:depends [npm-ci postcss shadow-cljs]}
+         partial-build (clojure "-X rain.examples.todomvc/partial-build")
+         full-build {:depends [#_lint assets #_partial-build]}
+
+         ;; Used for interacting with production.
+         deploy           com.biffweb.tasks/deploy
+         soft-deploy      com.biffweb.tasks/soft-deploy
+         refresh          com.biffweb.tasks/refresh
+         restart          com.biffweb.tasks/restart
+         logs             com.biffweb.tasks/logs
+         prod-repl        com.biffweb.tasks/prod-repl
+         prod-dev         com.biffweb.tasks/prod-dev
+
+         ;; Internal tasks called by Biff in production.
+         post-receive     com.biffweb.tasks/post-receive
+         run-cmd          com.biffweb.tasks/run-cmd}}
