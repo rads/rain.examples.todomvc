@@ -2,6 +2,8 @@
 
 **Live example: [https://todomvc.rads.dev/](https://todomvc.rads.dev)**
 
+This is an example full-stack app built with [Rain](https://github.com/rads/rain), allowing for server-side rendering in a Reagent/Re-frame application.
+
 ## Getting Started
 
 Start the dev server:
