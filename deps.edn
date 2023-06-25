@@ -9,7 +9,7 @@
         com.cnuernber/charred {:mvn/version "1.028"}
         io.github.prestancedesign/todo-backend-reitit {:git/url "https://github.com/rads/todo-backend-reitit.git"
                                                        :git/sha "19093c1f607ff0addb57e0311e21f16c57dc3ac0"}
-        io.github.rads/rain {:git/sha "f1a929d2dddfc82a16ef880699b7af9d8f09d64b"}
+        io.github.rads/rain {:git/tag "v0.1.3" :git/sha "051a330"}
         org.babashka/http-client {:mvn/version "0.2.9"}
         org.babashka/json {:mvn/version "0.1.1"}
         org.clj-commons/hickory {:mvn/version "0.7.3"}
