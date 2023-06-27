@@ -152,9 +152,9 @@
   (fn [{:keys [todos]} _]
     (every? :completed (vals todos))))
 
-(defn edit-input [{:keys [id title]}]
+(defn edit-input [{:keys [title]}]
   (let [v (rrf/atom title)]
-    (fn [_]
+    (fn [{:keys [id]}]
       [:input.edit {:value @v
                     :autoFocus true
                     :on-change (rrf/event [e]
