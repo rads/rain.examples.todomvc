@@ -154,7 +154,7 @@
 
 (defn edit-input [{:keys [id title]}]
   (let [v (rrf/atom title)]
-    (rrf/f []
+    (fn [_]
       [:input.edit {:value @v
                     :autoFocus true
                     :on-change (rrf/event [e]
@@ -171,7 +171,7 @@
         all-todos (rrf/subscribe [::all-todos])
         all-completed (rrf/subscribe [::all-completed])
         fields (rrf/atom {})]
-    (rrf/f []
+    (fn [_]
       [:<>
        [:section.todoapp
         [:header.header
