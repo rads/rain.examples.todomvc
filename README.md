@@ -21,7 +21,7 @@ bb dev
 - Uses [Ring](https://github.com/ring-clojure/ring), [Reitit](https://github.com/metosin/reitit), and [Jetty](https://github.com/sunng87/ring-jetty9-adapter) on the backend to implement the HTTP server
 - Uses [Reagent](https://github.com/reagent-project/reagent) and [Re-frame](https://github.com/day8/re-frame/) for state management
 - Uses [Rain](https://github.com/rads/rain) to render Reagent and Re-frame components on the server _without a Node.js runtime_
-- Todos are persisted to Postgres using the existing [todo-backend-reitit](https://github.com/prestancedesign/todo-backend-reitit) project as a library (props to [@prestancedesign](https://github.com/prestancedesign/todo-backend-reitit))
+- Todos are persisted to Postgres using the existing [todo-backend-reitit](https://github.com/prestancedesign/todo-backend-reitit) project as a library (props to [@prestancedesign](https://github.com/prestancedesign))
 - A Swagger UI for the backend is available at [https://todomvc.rads.dev/swagger-ui](https://todomvc.rads.dev/swagger-ui)
 - The initial Re-frame DB is serialized into a `<script>` tag on the server and hydrated with [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) on the client
 - If JavaScript is disabled, the site can still be used in read-only mode

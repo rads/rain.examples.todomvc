@@ -157,10 +157,10 @@
     (fn [{:keys [id]}]
       [:input.edit {:value @v
                     :autoFocus true
-                    :on-change (rrf/event [e]
+                    :on-change (fn [e]
                                  (.preventDefault e)
                                  (reset! v (.-value (.-target e))))
-                    :on-blur (rrf/event [e]
+                    :on-blur (fn [_]
                                (rrf/dispatch [::stop-editing-todo
                                               {:id id
                                                :title @v}]))}])))
@@ -177,7 +177,7 @@
         [:header.header
          [:h1 "todos"]
          [:form
-          {:on-submit (rrf/event [e]
+          {:on-submit (fn [e]
                         (.preventDefault e)
                         (when-not (str/blank? (:title @fields))
                           (rrf/dispatch [::create-todo @fields])
@@ -186,7 +186,7 @@
            {:placeholder "What needs to be done?"
             :autoFocus true
             :value (:title @fields)
-            :on-change (rrf/event [e]
+            :on-change (fn [e]
                          (.preventDefault e)
                          (swap! fields assoc :title (.-value (.-target e))))}]]]
         [:section.main
@@ -200,7 +200,7 @@
             [:li {:class (when (or completed edit)
                            (str/join " " [(when completed "completed")
                                           (when edit "editing")]))
-                  :on-click (rrf/event [e]
+                  :on-click (fn [e]
                               (.preventDefault e)
                               (when (= 2 (.-detail e))
                                 (rrf/dispatch [::start-editing-todo {:id id}])))
@@ -294,7 +294,7 @@
           :cljs [:fx [[:dispatch [::completed]]]])}]]])
 
 (def router (r/router routes))
-(def href #(apply rrf/href router %&))
+(def href #(apply rrf/href-alpha router %&))
 
 (def plugin
   {:routes routes})
