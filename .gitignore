@@ -20,3 +20,4 @@ pom.xml
 .shadow-cljs
 secrets.env
 /config.edn
+/bin/tailwindcss

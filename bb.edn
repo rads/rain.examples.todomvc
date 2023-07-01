@@ -3,14 +3,7 @@
         com.biffweb/tasks {:git/url "https://github.com/jacobobryant/biff"
                            :git/tag "v0.7.6" :git/sha "d0a3248"
                            :deps/root "tasks"}}
- :tasks {dev (exec 'rain.tasks/dev)
-         lint (exec 'rain.tasks/lint)
-         npm-ci (shell "npm ci")
-         postcss (exec 'rain.tasks/postcss)
-         shadow-cljs (clojure "-M:shadow-cljs release prod")
-         assets {:depends [npm-ci postcss shadow-cljs]}
-         partial-build (clojure "-X rain.examples.todomvc/partial-build")
-         full-build {:depends [#_lint assets #_partial-build]}
+ :tasks {dev com.biffweb.tasks/dev
          test (clojure "-M:test")
 
          ;; Used for interacting with production.
