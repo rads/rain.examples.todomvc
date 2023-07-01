@@ -15,9 +15,6 @@
   {:project {:version "0.0.1-SNAPSHOT"
              :name io.github.rads/todomvc}}
 
-  :dev
-  {:main-opts ["-m" "rain.examples.todomvc"]}
-
   :test
   {:extra-paths ["test"]
    :extra-deps {io.github.cognitect-labs/test-runner
