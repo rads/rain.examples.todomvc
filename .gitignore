@@ -18,6 +18,7 @@ pom.xml
 /*.dylib
 /karma.conf.js
 .shadow-cljs
+secrets.edn
 secrets.env
 /config.edn
 /bin/tailwindcss
