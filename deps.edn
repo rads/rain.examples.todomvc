@@ -4,7 +4,7 @@
         com.biffweb/biff {:git/url "https://github.com/jacobobryant/biff"
                           :git/tag "v0.7.6" :git/sha "d0a3248"}
         io.github.prestancedesign/todo-backend-reitit {:git/url "https://github.com/rads/todo-backend-reitit.git"
-                                                       :git/sha "074b5cb0523d5e44f6123e8f1938d0cfcc472f04"}
+                                                       :git/sha "e5336965570a9c8e28de76c85af78de045f61ed5"}
         io.github.rads/rain {:git/tag "v0.1.5" :git/sha "e38aead"}
         org.clojure/clojure {:mvn/version "1.12.0-alpha3"}
         org.slf4j/slf4j-simple {:mvn/version "2.0.7"}
@@ -16,4 +16,11 @@
              :name io.github.rads/todomvc}}
 
   :dev
-  {:main-opts ["-m" "rain.examples.todomvc"]}}}
+  {:main-opts ["-m" "rain.examples.todomvc"]}
+
+  :test
+  {:extra-paths ["test"]
+   :extra-deps {io.github.cognitect-labs/test-runner
+                {:git/tag "v0.5.0" :git/sha "b3fd0d2"}}
+   :main-opts ["-m" "cognitect.test-runner"]
+   :exec-fn cognitect.test-runner.api/test}}}

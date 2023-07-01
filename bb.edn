@@ -11,6 +11,7 @@
          assets {:depends [npm-ci postcss shadow-cljs]}
          partial-build (clojure "-X rain.examples.todomvc/partial-build")
          full-build {:depends [#_lint assets #_partial-build]}
+         test (clojure "-M:test")
 
          ;; Used for interacting with production.
          deploy           com.biffweb.tasks/deploy

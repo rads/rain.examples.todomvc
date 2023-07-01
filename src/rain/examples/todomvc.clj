@@ -10,7 +10,8 @@
             [rain.examples.todomvc.ui :as ui]
             [reitit.ring :as ring]
             [reitit.swagger-ui :as swagger-ui]
-            [todo-backend.core :as todo-backend]))
+            [todo-backend.core :as todo-backend]
+            [todo-backend.store :as todo-backend-store]))
 
 (defn generate-assets! [{:keys [biff/plugins] :as ctx}]
   (let [routes (keep :routes @plugins)]
@@ -38,11 +39,13 @@
     (keep :api-routes plugins)]])
 
 (def handler
-  (ring/routes
-    (ring/ring-handler todo-backend/router)
-    (swagger-ui/create-swagger-ui-handler {:path "/swagger-ui"})
-    (-> (biff/reitit-handler {:routes (server-routes plugins)})
-        biff/wrap-base-defaults)))
+  (-> (ring/routes
+        (ring/ring-handler todo-backend/router)
+        (swagger-ui/create-swagger-ui-handler {:path "/swagger-ui"})
+        (-> (biff/reitit-handler {:routes (server-routes plugins)})
+            biff/wrap-base-defaults))
+      todo-backend-store/wrap-db))
+
 
 (defn on-save [ctx]
   (biff/add-libs)
