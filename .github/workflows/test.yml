@@ -1,12 +1,10 @@
-name: Full Build
-permissions:
-  contents: write
+name: Run Tests
 on:
   push:
     branches:
       - main
 jobs:
-  bb-full-build:
+  bb-test:
     runs-on: ubuntu-latest
     concurrency:
       group: full-build-${{ github.ref }}
@@ -25,10 +23,6 @@ jobs:
           bb: 1.3.179
           clj-kondo: 2023.04.14
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
       - id: cache-maven
         uses: actions/cache@v3
         with:
@@ -37,12 +31,9 @@ jobs:
             ~/.gitlibs
           key: ${{ runner.os }}-${{ hashFiles('deps.edn') }}
 
-      - name: bb full-build
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: bb test
         run: |
-          bb full-build
+          bb test
 
       - name: Upload Clojure error logs
         if: failure()
